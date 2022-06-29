@@ -22,7 +22,7 @@ module.exports = {
         new CleanWebpackPlugin()
     ],
     resolve: {
-    extensions: ['.ts', '.js']
+        extensions: ['.ts', '.js']
     },
     devServer: { 
         static: {
@@ -31,7 +31,7 @@ module.exports = {
         hot:true, 
         port: 9002
     },
-    mode: 'development',
+    mode: 'production',
     optimization: {
         splitChunks: {
             chunks: 'all'
