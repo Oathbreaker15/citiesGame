@@ -1,7 +1,7 @@
 import CitiesModel, { GameMain } from './mvc/model/model';
 import CitiesView from './mvc/view/view';
 import CitiesController from './mvc/controller/controller';
-// import '../styles/style.css';
+import '../styles/style.css';
 
 
 document.addEventListener('DOMContentLoaded', ()=>{
