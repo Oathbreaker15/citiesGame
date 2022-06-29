@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css" type="text/css">
+    <title>Города</title>
+</head>
+<body>
+    <main class="cities-main-block">
+        <div class="neon-wrapper">
+            <section class="cities-main-block-inner">
+                <div class="error-block hidden">
+                    <div class="error-text"></div>
+                </div>
+    
+                <h1>Города</h1>
+    
+                <h3 class="current-letter">Текущая буква: Начните чтобы узнать</h3>
+            
+                <section class="form-wrapper">
+                    <div class="mentioned-cites-wrapper">
+                        <h3>Уже были названы:</h3>
+                        <ul class="mentioned-cites"></ul>
+                    </div>
+        
+                    <form id="cityForm">
+                        <input class="city-value" type="text" placeholder="Введите город" required pattern="^[а-яА-Я]+(?:[\s-]+[а-яА-Я]+)*$">
+                        <input class="city-submit" type="submit" value>
+                    </form>
+                </section>
+            </section>
+        </div>
+    </main>
+</body>
+
+<!-- <script src="./dist/index.js"> -->
+<!-- </script> -->
+</html>
