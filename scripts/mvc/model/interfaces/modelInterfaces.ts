@@ -44,6 +44,9 @@ export interface IGameBasic {
     handleNoCityFoundError(): string;
 }
 
+// Не вижу смысла разделять интерфейсы IUsersTurn и IOpponentsTurn
+// они используются всегда вместе
+// ну или сделать третий интерфейс IGame и отнаследуюся от этих двух и используй его
 export interface IUsersTurn extends IGameBasic {
     checkIfFirstLetterCorrect(city: string): boolean;
     checkIfCityInList(city: string, arr: ICity[] | undefined): boolean;
@@ -53,4 +56,51 @@ export interface IOpponentsTurn extends IGameBasic {
     getCitiesListOnCurrentLetter(letter: string): ICity[] | undefined;
     generateRandom(limit:number, min:number): number;
     searchByOpponent(currentLetter: string): void | number;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+enum Player {
+    me,
+    opponent
+}
+
+interface GameState {
+    currentCity: string;
+    nextLetter: string;
+}
+
+interface Model {
+    cities: string[];
+    currentCity: string;
+    nextLetter: string;
+    mentionedCities: string[];
+    forbiddenLetters: string[];
+    init(): Promise<void>;
+}
+
+
+interface Game {
+    init(): Promise<void>;
+    enterCity(city: string): void; // Throws errors sometimes
+    getState(): GameState
+}
+
+interface View {
+    onCitySubmit(handler: (city: string) => void): void;
+    renderCity(city: string, nextLetter: string, player: Player): void;
+    renderError(error: string): void;
+    // renderCountry(country: string): void;
 }

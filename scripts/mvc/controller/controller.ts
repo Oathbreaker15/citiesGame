@@ -11,17 +11,27 @@ export default class CitiesController {
         this.model = model;
         this.game = game;
         this.view = view;
+        // Не понимаю почему это тут да еще и в конструкторе
+        // А, я понял...это подписка на сабмит, тогда название корявое
+        // Нужно onSubmitEnteredCity
         this.view.submitEnteredCity(this.handleSubmitEnteredCity);
         console.log(this);
         
     }
 
+    // Контроллер ничо не должен знать про HTMLFormElement и любое проявление html
+    // Почему не передавать сразу city?
     handleSubmitEnteredCity = (event: HTMLFormElement): void => {
         const city = event.value;
         this.game.setCurrentCity(city);
         this.handleSelectedCity(city);
     };
 
+    // Вся эта логика должна быть в game
+    // Мы вообще обсуждали что надо сделать отдельно модель\сервис, отдельно вью и какие у них должны были быть
+    // интерфейсы, тут бы логики небыло и интерфейсы небыли бы раздутыми
+    // Это все логика игры, ну есть же класс game, там вся игра должна быть
+    // контроллер\презентер соединяет логику и вью и все, тут нифига ничо этого не должно быть
     handleSelectedCity = (city: string): void => {
         if (!this.game.checkIfCityInList(this.model.currentCity, this.model.formattedCities)) {
             return this.view.drawErrorMsg(this.game.handleNoCityFoundError());

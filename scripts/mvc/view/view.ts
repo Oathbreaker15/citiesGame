@@ -2,8 +2,9 @@ import { IViewBasic } from "./interfaces/viewInterfaces";
 
 export default class CitiesView implements IViewBasic {
     protected formWrapper: Element;
+    // Зачем эти нулы везде
     protected currentLetterBlock: HTMLHeadingElement | null;
-    protected form: Element | null;
+    protected form: Element;
     protected submitBtn: Element | null;
     protected errorBlock: Element | null;
     protected errorBlockInner: Element | null;
@@ -13,8 +14,14 @@ export default class CitiesView implements IViewBasic {
 
     constructor(formWrapper: Element, formId: string) {
         this.formWrapper = formWrapper;
-        this.currentLetterBlock = this.formWrapper !== null ? this.formWrapper.querySelector('.current-letter') : null;
-        this.form = formWrapper.querySelector(`${formId}`);
+        // Зачем проверки на нулы?
+        // Нам полюбому нужны все элементы, просто ожидаем все элементы, а если чего-то не будет - ошибка
+        this.currentLetterBlock = this.formWrapper.querySelector('.current-letter')
+        const form = formWrapper.querySelector(`${formId}`);
+        if (!form) {
+            throw new Error('Не найден форма для ввода города');
+        }
+        this.form = form
         this.submitBtn = this.form !== null ? this.form.querySelector('.city-submit') : null;
         this.errorBlock = this.formWrapper !== null ? this.formWrapper.querySelector('.error-block') : null;
         this.errorBlockInner = this.errorBlock !== null ? this.errorBlock?.querySelector('.error-text') : null;
