@@ -101,7 +101,7 @@ main h1 {
     margin-bottom: 0;
 }
 
-.mentioned-cites li.user {
+.mentioned-cites li.player {
     background: #e66465;
     justify-content: flex-end;
     align-self: end;
